@@ -1,6 +1,9 @@
 <template>
   <div>
-    <span>{{ searchResults }}</span>
+    <div v-for="country in searchResults" :key="country.id">
+      <h4>{{ country.name.common }}</h4>
+      <p>{{ country.capital }}</p>
+    </div>
   </div>
 </template>
 

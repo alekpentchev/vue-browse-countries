@@ -4,11 +4,11 @@
       <div class="row">
 
         <div class="col-md-12">
-          <input type="text" v-model="msg">
+          <input type="text" v-model="phrase">
         </div>
 
         <div class="col-md-6">
-          <SearchResults :search-results="msg"/>
+          <SearchResults :search-results="searchCountries"/>
         </div>
 
         <div class="col-md-6">
@@ -30,9 +30,24 @@ export default {
   },
   data() {
     return {
-      msg: 'Search for a country',
+      phrase: '',
+      countriesEndpoint: 'https://raw.githubusercontent.com/mledoze/countries/master/countries.json',
+      countriesArray: [],
     };
   },
+  created() {
+    fetch(this.countriesEndpoint).then(blob => blob.json()).then(data => this.countriesArray.push(...data));
+  },
+  computed: {
+    searchCountries: function () {
+      return this.countriesArray.filter( country => {
+        let foundCountry = country.name.common.toLowerCase().includes(this.phrase.toLowerCase());
+        let foundCapital = country.capital.toLowerCase().includes(this.phrase.toLowerCase());
+
+        return foundCountry || foundCapital
+      })
+    }
+  }
 };
 </script>
 
