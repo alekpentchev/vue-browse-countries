@@ -1,7 +1,7 @@
 <template>
   <div v-if="Object.keys(this.searchedCountry)!=0">
     <h3>{{ country.name.common }}</h3>
-    <p><strong>Capital:</strong> {{ country.capital }}</p>
+    <p><strong>Capital:</strong> {{ country.capital[0] ? country.capital[0] : 'N.A.' }}</p>
     <p><strong>Region:</strong> {{ country.region }}</p>
     <p><strong>Subregion:</strong> {{ country.subregion }}</p>
 

@@ -43,7 +43,9 @@ export default {
     searchCountries: function () {
       return this.countriesArray.filter( country => {
         let foundCountry = country.name.common.toLowerCase().includes(this.phrase.toLowerCase());
-        let foundCapital = country.capital.toLowerCase().includes(this.phrase.toLowerCase());
+        let isCapitalSpecified = country.capital.length;
+        let foundCapital = isCapitalSpecified ? country.capital[0].toLowerCase().includes(this.phrase.toLowerCase()) : null;
+
 
         return foundCountry || foundCapital
       })

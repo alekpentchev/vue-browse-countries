@@ -9,7 +9,7 @@
       <div class="country-item" v-for="country in paginated('countries')" :key="country.id">
         <button class=" searched-item btn btn-dark" @click="onCountryClick(country)">
           <h4>{{ country.name.common }}</h4>
-          <p>{{ country.capital }}</p>
+          <p>{{ country.capital[0] }}</p>
         </button>
       </div>
     </paginate>
